@@ -4,14 +4,15 @@ new Vue({
         from: "Bigha",
         to: "Ropani",
         area: 0,
+        base: "Bigha",
         conversion_rates: [],
         isLoaded: false
     },
     computed: {
         //return conversion result
         result() {
-            if (!this.isLoaded || this.from == undefined || this.to == undefined || this.area < 0 || this.area == undefined) return "NaN"
-            var rate = this.conversion_rates[this.from][this.to];
+            if (!this.isLoaded || this.from == undefined || this.to == undefined || this.area < 0 || this.area == undefined) return "NaN";
+            var rate = (this.conversion_rates[this.base][this.to] / this.conversion_rates[this.base][this.from]);
             console.log(rate);
             return (rate * Number(this.area)).toFixed(2);
         }
@@ -19,6 +20,7 @@ new Vue({
     mounted() {
         this.conversion_rates = {
             "Bigha": {
+                "Bigha": 1,
                 "Kattha": 20,
                 "Meter Squared": 6772.63,
                 "Square Feet": 72900,
@@ -33,7 +35,6 @@ new Vue({
                 "Dhur": 20,
                 "Meter Squared": 338.63,
                 "Square Feet": 3645,
-
             },
             "Dhur": {
 

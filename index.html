@@ -28,13 +28,13 @@
                 <div class="form-group">
                     <label for="from">From Unit</label>
                     <select id="from" class="form-control form-control-lg" name="from" required autofocus v-model="from">
-                        <option :value="key" v-for="(value,key) in conversion_rates" :selected="key===from">{{key}}</option>
+                        <option :value="unit" v-for="(rate,unit) in conversion_rates[base]" :selected="unit===from">{{unit}}</option>
                     </select></div>
                 <div class="
                                 form-group">
                     <label for="to">To Unit</label>
                     <select class="form-control form-control-lg" id="to" name="to" v-model="to">
-                        <option :value="unit" v-for="(rate,unit) in conversion_rates[from]" :selected="unit===to">{{unit}}</option>
+                        <option :value="unit" v-for="(rate,unit) in conversion_rates[base]" :selected="unit===to">{{unit}}</option>
                     </select></div>
                 <div class="form-group">
                     <label for="area">Area To Convert</label>
