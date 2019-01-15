@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Land Unit Converter App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+</head>
+
+<body>
+    <section id="app">
+
+        <div class="highlight-clean" style="background-color:#e4e7e8;">
+            <div class="container">
+                <div class="intro">
+                    <h2 class="text-center">Land Area Converter</h2>
+                    <p class="text-center">Enter Land units here to convert to any unit.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-clean">
+            <form method="post">
+                <div class="form-group">
+                    <label for="from">From Unit</label>
+                    <select id="from" class="form-control form-control-lg" name="from" required autofocus v-model="from">
+                        <option :value="key" v-for="(value,key) in conversion_rates" :selected="key===from">{{key}}</option>
+                    </select></div>
+                <div class="
+                                form-group">
+                    <label for="to">To Unit</label>
+                    <select class="form-control form-control-lg" id="to" name="to" v-model="to">
+                        <option :value="unit" v-for="(rate,unit) in conversion_rates[from]" :selected="unit===to">{{unit}}</option>
+                    </select></div>
+                <div class="form-group">
+                    <label for="area">Area To Convert</label>
+                    <input id="area" class="form-control form-control-lg" type="text" name="area" placeholder="Area to convert"
+                        v-model="area"></div>
+                <div class="form-group">
+                    <h1 v-if="isLoaded && result!=`NaN`" class="text-center" style="padding-top:20px;">
+                        {{area+" "+from+" : "+result + " "+to}}
+                    </h1>
+                    <h1 v-if="!isLoaded || result==`NaN`" class="text-center" style="padding-top:20px;">Unable to
+                        Convert</h1>
+                </div>
+            </form>
+        </div>
+    </section>
+    <script src="land_converter.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
